@@ -58,7 +58,7 @@ for tc in range(1, T+1):
         # 만약 충전위치 사이의 거리가 한번에 이동할 수있는 정류장 수보다 많다면
         if max_step > K:
             print('뭔가 문제가 있음')
-            charge_count = 0     # 0을 출력하고
+            charge_count = 0     # 0을 리턴
             break   # 반복문을 탈출합니다
 
     print(f'#{tc} {charge_count}')
