@@ -27,7 +27,11 @@ for tc in range(1, T+1):
 
     for set_1 in total_set:     # 각 부분집합 하나
         sum_set = 0
-        if len(set_1) == N:
+        count_array = 0
+        for num in set_1:
+            count_array += 1
+
+        if count_array == N:
             for i in range(N):
                 sum_set += set_1[i]     # 부분집합의 합 구하기
             if sum_set == K:        # 부분집합의 합이 K와 같다면
