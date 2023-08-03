@@ -20,7 +20,7 @@
 
 """
 import sys
-sys.stdin = open("input.txt")
+sys.stdin = open("../0802/input.txt")
 
 T = 10
 

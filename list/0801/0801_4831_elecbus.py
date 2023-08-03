@@ -12,7 +12,7 @@ A도시는 전기버스를 운행하려고 한다. 전기버스는 한번 충전
 출발지에는 항상 충전기가 설치되어 있지만 충전횟수에는 포함하지 않는다.
 """
 import sys
-sys.stdin = open("input.txt")
+sys.stdin = open("../0802/input.txt")
 
 T = int(input())
 

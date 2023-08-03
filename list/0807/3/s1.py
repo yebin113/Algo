@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open("0802/input.txt")
+sys.stdin = open("input.txt")
 
 T = 10
 
