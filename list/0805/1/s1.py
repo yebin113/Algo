@@ -1,9 +1,8 @@
-import sys
-sys.stdin = open("input.txt")
-
-T = 10
-
+T = int(input())
 for tc in range(1, T+1):
-    N = int(input())
-    arr = list(map(int, input().split()))
-    print(f'#{tc}')
+    R, S = input().split()
+    for w in S:
+        for i in range(int(R)):
+            print(w,end='')
+
+    print()
