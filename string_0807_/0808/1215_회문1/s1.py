@@ -6,7 +6,7 @@ T = 10
 for tc in range(1, T + 1):
     # 회문의 길이
     M = int(input())
-    # 문자하나가 원소인 리스트 8줄을 원소로 가진 리스트
+    # 문자하나가 원소인 1258_행렬찾기 8줄을 원소로 가진 1258_행렬찾기
     arr = [list(map(str, input())) for i in range(8)]
     # 회문이 존재할 때마다 +1시킬 카운트 변수
     count_word = 0
