@@ -21,44 +21,58 @@ NxN 크기의 글자판에서 길이가 M인 회문을 찾아 출력하는 프�
 다음 줄부터 N개의 글자를 가진 N개의 줄이 주어진다.
 """
 
+
 import sys
+
 sys.stdin = open("input.txt")
+
+
+# 반전 시키는 함수 구현
+def reverse_sentence(arr):
+    for i in range(N // 2):
+        arr[i], arr[- 1 - i] = arr[- 1 - i], arr[i]
+    return arr
+
 
 T = int(input())
 
-for tc in range(1, T+1):
+for tc in range(1, T + 1):
     # NxN 크기의 글자판에서 길이가 M인 회문
     N, M = map(int, input().split())
     arr = [list(map(str, input())) for i in range(N)]
-    sen = []
 
     # 행 우선 순회
     for i in range(N):
         # M 길이의 회문을 찾기 위한 순회
         for j in range(N - M + 1):
-            # 대칭되는 위치에 일치하는 글자 수를 셀것
-            count_word = 0
-            # 주어진 회문의 길이안에서 검사
-            for k in range(j, j + M//2):
-                print(f'arr[{i}][{k}]: {arr[i][k]}, arr[{i}][{j + M - 1 - k}]:{arr[i][j+M-1-k]}')
-                if arr[i][k] == arr[i][j+M-1-k]:
-                    count_word += 1
-                print(f'count_word : {count_word}')
-            if count_word >= M//2:
-                sen.extend(arr[i])
+            sen = []
+            for k in range(j, j + M):
+                # M 길이의 문자를 리스트에 넣기
+                sen.append(arr[i][k])
 
-    # for j in range(N):
-    #     # M 길이의 회문을 찾기 위한 순회
-    #     for i in range(N - M + 1):
-    #         # 대칭되는 위치에 일치하는 글자 수를 셀것
-    #         count_word = 0
-    #         # 주어진 회문의 길이안에서 검사
-    #         for k in range(i, i + M//2):
-    #             if arr[k][j] == arr[i+M-1-k][j]:
-    #                 count_word += 1
-    #     if count_word >= M//2:
-    #         for m in range(N):
-    #             sen.append(arr[m][j])
+            # 순서 반전 시킨 리스트와 동일한지 확인
+            reverse_sen = reverse_sentence(sen[:])
 
+            # 순서 반전 시킨 리스트와 동일하다면
+            if sen == reverse_sen:
+                # 문자열로 다시 모아서 출력
+                ans = ''.join(sen)
+                print(f'#{tc} {ans}')
 
-    print(f'#{tc} {sen}')
+    # 열 우선 순회
+    for j in range(N):
+        # M 길이의 회문을 찾기 위한 순회
+        for i in range(N - M + 1):
+            sen = []
+            for k in range(i, i + M):
+                # M 길이의 문자를 리스트에 넣기
+                sen.append(arr[k][j])
+
+            # 순서 반전 시킨 리스트와 동일한지 확인
+            reverse_sen = reverse_sentence(sen[:])
+
+            # 순서 반전 시킨 리스트와 동일하다면
+            if sen == reverse_sen:
+                # 문자열로 다시 모아서 출력
+                ans = ''.join(sen)
+                print(f'#{tc} {ans}')
