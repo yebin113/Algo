@@ -23,7 +23,7 @@ for tc in range(1, T + 1):
             if count_row[k] != 1 or count_col[k] != 1:
                 ans = 0
 
-    for i in range(3):  # 3* 3 격자 검증을 위해 3칸 기준으로 건너뛰어야함
+    for i in range(3):  # 파스칼의삼각형* 파스칼의삼각형 격자 검증을 위해 3칸 기준으로 건너뛰어야함
         count_three = [0] * 10
         for j in range(3*i, 3*i+3):    # 3칸씩 건너뛰면서 3개의 행을 순회
             for m in range(3 * i, 3 * i + 3):   # 3칸씩 건너뛰면서 3개의 열을 순회

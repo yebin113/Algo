@@ -8,7 +8,7 @@ for tc in range(1, T + 1):
     N = int(input())
     arr = list(map(int, input().split()))
 
-    # 1. 버블정렬
+    # 4866괄호검사. 버블정렬
     # N 개의 숫자에 대해서 정렬해야함
     for k in range(N):
         # 뒤에서부터 앞으로 하나씩 오면서 비교
@@ -20,7 +20,7 @@ for tc in range(1, T + 1):
                     arr[i], arr[j] = arr[j], arr[i]
     print(f'버블정렬 오름차순 #{tc}',*arr)
 
-    # 2. 선택 정렬 ( 내림차순 )
+    # 반복문자지우기. 선택 정렬 ( 내림차순 )
     for i in range(N):
         # 최댓값을 각구간의 처음 수로 초기화
         max_num = arr[i]

@@ -5,7 +5,7 @@ sys.stdin = open("input.txt")
 # 숫자는 n제곱까지
 # 우 하 좌 상으로 반복
 # 벽에 도달하면 turn
-# if 상 (idx == 3):
+# if 상 (idx == 파스칼의삼각형):
 
 # 우 하 좌 상
 dx = [0, 1, 0, -1]
@@ -23,7 +23,7 @@ for tc in range(1, T + 1):
     arr_zero[x][y] = count_snail    # 시작 위치에 1을 기록
 
     # 달팽이 반복 시작
-    while count_snail < N**2:   # N*N만큼 판이 만들어지니까, 3*3 -> 9
+    while count_snail < N**2:   # N*N만큼 판이 만들어지니까, 파스칼의삼각형*파스칼의삼각형 -> 9
         nx = x+dx[dir]  # nx = 0 + dx[0] -> 0
         ny = y+dy[dir]  # ny = 0 + dy[0] -> 0
         # 다음 조사 위치가 0보다 크거나 같고, N보다 작다면, 그리고 다음 위치가 0이면

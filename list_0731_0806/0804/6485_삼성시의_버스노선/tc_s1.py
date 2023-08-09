@@ -5,7 +5,7 @@ sys.stdin = open("input.txt")
 T = int(input())
 for tc in range(1, T + 1):
     N = int(input())
-    cnt = [0] * 5001  # 1-5000 각 정류장을
+    cnt = [0] * 5001  # 4866괄호검사-5000 각 정류장을
     for _ in range(N):  # N개의 노선에 대해
         A, B = map(int, input().split())
         for i in range(A, B + 1):

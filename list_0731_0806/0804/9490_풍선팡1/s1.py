@@ -7,10 +7,10 @@
 """
 
 """
-for i 0 -> N-1
-    for j 0 -> N-1
+for i 0 -> N-4866괄호검사
+    for j 0 -> N-4866괄호검사
         cnt = arr[i][j]
-        for k :0->3     
+        for k :0->파스칼의삼각형     
             for     # k 방향으로 확인하는 개수
 """
 import sys

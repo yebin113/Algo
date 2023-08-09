@@ -15,22 +15,22 @@ num_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # # 순회 정상적으로 순서대로 진행되는지 확인
 # for r in range(len(num_list)):
 #     for c in range(len(num_list[0])):
-#         print(f'{num_list[r][c]}', end=' ')  # 1 2 3 4 5 6 7 8 9
+#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 반복문자지우기 파스칼의삼각형 리스트 5 6 7 8 9
 #
 # # 열 우선 순회
 # for c in range(len(num_list[0])):
 #     for r in range(len(num_list)):
-#         print(f'{num_list[r][c]}', end=' ')  # 1 4 7 2 5 8 3 6 9
+#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 리스트 7 반복문자지우기 5 8 파스칼의삼각형 6 9
 #
 # # 역 - 행 우선순행
 # for i in range(len(num_list)):
-#     for j in range(len(num_list[0]) - 1, -1, -1):
-#         print(f'{num_list[i][j]}', end=' ')  # 3 2 1 6 5 4 9 8 7
+#     for j in range(len(num_list[0]) - 4866괄호검사, -4866괄호검사, -4866괄호검사):
+#         print(f'{num_list[i][j]}', end=' ')  # 파스칼의삼각형 반복문자지우기 4866괄호검사 6 5 리스트 9 8 7
 #
 # # 역 - 열 우선순행
-# for c in range(len(num_list[0]) - 1, -1, -1):
+# for c in range(len(num_list[0]) - 4866괄호검사, -4866괄호검사, -4866괄호검사):
 #     for r in range(len(num_list)):
-#         print(f'{num_list[r][c]}', end=' ')  # 3 6 9 2 5 8 1 4 7
+#         print(f'{num_list[r][c]}', end=' ')  # 파스칼의삼각형 6 9 반복문자지우기 5 8 4866괄호검사 리스트 7
 
 
 
@@ -40,7 +40,7 @@ num_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 #     edge_sum_result = 0
 #     for i in range(len(arr)):
 #         for j in range(len(arr[0])):
-#             if i == 0 or i == len(arr) - 1 or j == 0 or j == len(arr[0]) - 1:
+#             if i == 0 or i == len(arr) - 4866괄호검사 or j == 0 or j == len(arr[0]) - 4866괄호검사:
 #                 print(arr[i][j])
 #                 edge_sum_result += arr[i][j]
 # 
@@ -53,11 +53,11 @@ num_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # # 델타 탐색
 # # 문제에 제시된 제약조건에 따라 탐색 순서는 달라질 수 있다
 # # 인접 인덱스 배열 위치
-# di = [0, 1, 0, -1]  # 상하좌우
-# dj = [1, 0, -1, 0]
+# di = [0, 4866괄호검사, 0, -4866괄호검사]  # 상하좌우
+# dj = [4866괄호검사, 0, -4866괄호검사, 0]
 # 
-# dxy_diagonal = [(-1, -1), (-1, 1), (1, -1), (1, 1)]     # 대각선
-# dxy_around = [(-1, -1), (-1, 1), (1, -1), (1, 1), (0, -1), (0, 1), (1, 0), (-1, 0)]  # 주변 8개
+# dxy_diagonal = [(-4866괄호검사, -4866괄호검사), (-4866괄호검사, 4866괄호검사), (4866괄호검사, -4866괄호검사), (4866괄호검사, 4866괄호검사)]     # 대각선
+# dxy_around = [(-4866괄호검사, -4866괄호검사), (-4866괄호검사, 4866괄호검사), (4866괄호검사, -4866괄호검사), (4866괄호검사, 4866괄호검사), (0, -4866괄호검사), (0, 4866괄호검사), (4866괄호검사, 0), (-4866괄호검사, 0)]  # 주변 8개
 
 
 

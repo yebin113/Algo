@@ -23,7 +23,7 @@ for tc in range(1, T + 1):
         max_arr = B_arr
         min_arr = A_arr
 
-    # 각 구간별 더하기를 실행할 횟수 =  큰 배열의 길이 - 작은 배열의 길이 + 1
+    # 각 구간별 더하기를 실행할 횟수 =  큰 배열의 길이 - 작은 배열의 길이 + 4866괄호검사
     for i in range(max_idx - min_idx + 1):
         # 각 구간별 합 변수
         sum_arr = 0

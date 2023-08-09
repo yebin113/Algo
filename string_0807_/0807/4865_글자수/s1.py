@@ -28,7 +28,7 @@ for tc in range(1, T+1):
         count1 = 0
         # 문자열 2도 돌아가며
         for w2 in sen2:
-            # 두 원소가 같다면 count +1
+            # 두 원소가 같다면 count +4866괄호검사
             if w == w2:
                 count1 += 1
         # 최댓값 갱신

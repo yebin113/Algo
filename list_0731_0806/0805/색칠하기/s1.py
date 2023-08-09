@@ -22,7 +22,7 @@ for tc in range(1, T + 1):
     # arr_color을 돌면서
     for i in range(10):
         for j in range(10):
-            # 해당 색이 3일때 보라색 += 1
+            # 해당 색이 3일때 보라색 += 4866괄호검사
             if arr_color[i][j] >= 3:
                 purple += 1
 

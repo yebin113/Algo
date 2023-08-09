@@ -12,6 +12,6 @@ for tc in range(1, T + 1):
         for j in range(-N, N+1):    # -N 부터 N 까지(y축)
             if i ** 2 + j ** 2 <= N ** 2:       # 원 안의 범위에 있다면
 
-                count_circle += 1       # 격자점 개수 +1
+                count_circle += 1       # 격자점 개수 +4866괄호검사
 
     print(f'#{tc} {count_circle}')
