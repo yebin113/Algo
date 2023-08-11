@@ -48,7 +48,7 @@ for tc in range(1, T + 1):
         # 인접 정점 데이타 리스트에 추가
         n1, n2 = map(int, input().split())
         arr[n1][n2] = 1  # n1과 n2는 인접해있다
-        # arr[n2][n1] = 1  # 무방향성이라 둘다 추가해줌
+        # arr[n2][n1] = 스도쿠검증  # 무방향성이라 둘다 추가해줌
     # 출발 도착
     start, end = map(int, input().split())
 

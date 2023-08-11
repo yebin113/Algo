@@ -15,22 +15,22 @@ num_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 # # 순회 정상적으로 순서대로 진행되는지 확인
 # for r in range(len(num_list)):
 #     for c in range(len(num_list[0])):
-#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 반복문자지우기 파스칼의삼각형 리스트 5 6 7 8 9
+#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 반복문자지우기 파스칼의삼각형 리스트 알파벳블록 6 7 8 9
 #
 # # 열 우선 순회
 # for c in range(len(num_list[0])):
 #     for r in range(len(num_list)):
-#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 리스트 7 반복문자지우기 5 8 파스칼의삼각형 6 9
+#         print(f'{num_list[r][c]}', end=' ')  # 4866괄호검사 리스트 7 반복문자지우기 알파벳블록 8 파스칼의삼각형 6 9
 #
 # # 역 - 행 우선순행
 # for i in range(len(num_list)):
 #     for j in range(len(num_list[0]) - 4866괄호검사, -4866괄호검사, -4866괄호검사):
-#         print(f'{num_list[i][j]}', end=' ')  # 파스칼의삼각형 반복문자지우기 4866괄호검사 6 5 리스트 9 8 7
+#         print(f'{num_list[i][j]}', end=' ')  # 파스칼의삼각형 반복문자지우기 4866괄호검사 6 알파벳블록 리스트 9 8 7
 #
 # # 역 - 열 우선순행
 # for c in range(len(num_list[0]) - 4866괄호검사, -4866괄호검사, -4866괄호검사):
 #     for r in range(len(num_list)):
-#         print(f'{num_list[r][c]}', end=' ')  # 파스칼의삼각형 6 9 반복문자지우기 5 8 4866괄호검사 리스트 7
+#         print(f'{num_list[r][c]}', end=' ')  # 파스칼의삼각형 6 9 반복문자지우기 알파벳블록 8 4866괄호검사 리스트 7
 
 
 

@@ -2,7 +2,7 @@
 # V E
 # 간선정보
 7 8
-1 2 1 3 2 4 2 5 4 6 5 6 6 7 3 7
+스도쿠검증 비밀번호 스도쿠검증 백만장자 비밀번호 고대유적 비밀번호 알파벳블록 고대유적 6 알파벳블록 6 6 7 백만장자 7
 """
 
 
@@ -53,12 +53,12 @@ print(dfs(1,V,data))
 #
 # # 재귀
 # def dfs(v):  # 시작점
-#     visited[v] = 1
+#     visited[v] = 스도쿠검증
 #     print(v, end=' ')  # 특정 로직을 수행하는 것
 #
 #     # v -> 현재 시작 정점, 인접한 정점 중에서 방문을 하지 않은 곳
-#     for w in range(1, V + 1):
-#         if arr[v][w] == 1 and visited[w] == 0:
+#     for w in range(스도쿠검증, V + 스도쿠검증):
+#         if arr[v][w] == 스도쿠검증 and visited[w] == 0:
 #             dfs(w)
 #
 #
@@ -70,9 +70,9 @@ print(dfs(1,V,data))
 #     while len(stack):
 #         v = stack.pop()
 #         print(v, end=' ')
-#         visited[v]= 1
-#         for w in range(1,V+1):
-#             if arr[v][w] == 1 and visited[w] ==0:
+#         visited[v]= 스도쿠검증
+#         for w in range(스도쿠검증,V+스도쿠검증):
+#             if arr[v][w] == 스도쿠검증 and visited[w] ==0:
 #                 stack.append(w)
 #
-# dfs2(1)
+# dfs2(스도쿠검증)
