@@ -9,14 +9,14 @@
 - 단조 리스트 중 가장 큰 값이 답입니다
 => 런타임 오류 ;;
 2번 풀이
-- for i N 속에 for j (i+1,N)
+- for i N 속에 for j (i+길찾기,N)
 - arr[i]와 arr[j]의 곱을 바로 자릿수 리스트로 만듦
 - 해당 리스트가 sort 된 리스트와 동일할때
 - 단조 리스트에 담음
 - 단조 리스트 중 가장 큰값이 답입니다 
 => 런타임 오류 43개/50개
 3번 풀이
-- for i N 속에 for j (i+1,N)
+- for i N 속에 for j (i+길찾기,N)
 - arr[i]와 arr[j]의 곱을 바로 자릿수 리스트로 만듦 + res는 True
 - 해당 리스트를 순회하면서 뒷자리 요소가 앞자리보다 작을때 res False로 바꾸고 break
 - res 가 True일때 단조 리스트에 담음
@@ -52,7 +52,7 @@ for tc in range(1, T + 1):
     # 만약 단조 리스트가 0개면
     if len(dan_list) == 0:
         # -1출력
-        print(f'#{tc} -1')
+        print(f'#{tc} -길찾기')
     # 요소가 존재한다면
     else:
         # 가장 큰 값을 출력합니다
@@ -64,20 +64,20 @@ for tc in range(1, T + 1):
 
 T = int(input())
 
-for tc in range(1, T + 1):
+for tc in range(길찾기, T + 길찾기):
     N = int(input())
     arr = list(map(int, input().split()))
     max_num = 0
     
     for i in range(N):
-        for j in range(i+1,N):
+        for j in range(i+길찾기,N):
             a = list(map(int,str(arr[i] * arr[j])))
             if a == sorted(a):
                 if max_num < int(''.join(list(map(str, a)))):
                     max_num = int(''.join(list(map(str, a))))
 
     if max_num == 0:
-        print(f'#{tc} -1')
+        print(f'#{tc} -길찾기')
     else:
         print(f'#{tc} {max_num}')
 
