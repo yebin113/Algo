@@ -19,8 +19,10 @@ def RSP(A,B):
 # 사실... 어떻게 풀었는지 모르겠음
 # 범위를 i~j로 할때
 def divide(start, end):
+
     # 첫 인덱스랑 마지막 인덱스가 같아지면
     if start == end :
+
         # 첫 인덱스를 리턴합니다
         return start                    # 2. 범위가 1이 되면 해당 값을 리턴하고
     # 중간 인덱스는 처음과 끝 //2
@@ -30,10 +32,12 @@ def divide(start, end):
     # 마지막은 중간부터 마지막까지 재귀
     end = divide(mid + 1 , end)
     # 재귀된 값을 가위바위보 시킴..
+    print(f'{str(start)}번째 친구는 {RSP_dict[str(start)]}를 냈습니다.{str(end)}번째 친구는 {RSP_dict[str(end)]}를 냈습니다. 가위바위보! 승자는 {RSP(str(start),str(end))}번친구')
     return RSP(str(start),str(end))     # 3. 리턴된 start와 end를 가위바위보 시키고 또 승자를 리턴
 
 
 for tc in range(1, T+1):
+
     # 인원수
     N = int(input())
     # 숫자카드(가위바위보)
