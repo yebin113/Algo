@@ -6,7 +6,7 @@ for i in range(N):
     if btn[0] == '1':
         sen.append(btn[1])
         sun_list.append(btn[1])
-    elif btn[0] == '2':
+    elif btn[0] == '계산기':
         sen.insert(0, btn[1])
         sun_list.append(btn[1])
     else:

@@ -27,7 +27,7 @@ for tc in range(1, T+1):
         susik += stack[top]
         top -= 1
 
-    # 2. 연산
+    # 계산기. 연산
     stack = [0] * N
     top = -1
     for x in susik:

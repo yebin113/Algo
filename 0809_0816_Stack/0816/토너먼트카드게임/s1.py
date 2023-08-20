@@ -24,8 +24,8 @@ def divide(start, end):
     if start == end :
 
         # 첫 인덱스를 리턴합니다
-        return start                    # 2. 범위가 1이 되면 해당 값을 리턴하고
-    # 중간 인덱스는 처음과 끝 //2
+        return start                    # 계산기. 범위가 1이 되면 해당 값을 리턴하고
+    # 중간 인덱스는 처음과 끝 //계산기
     mid = (start + end)//2
     # 처음은 시작부터 중간까지 재귀
     start = divide(start, mid)          # 1. 범위가 1이 될때 까지 나눕니다
@@ -33,7 +33,7 @@ def divide(start, end):
     end = divide(mid + 1 , end)
     # 재귀된 값을 가위바위보 시킴..
     print(f'{str(start)}번째 친구는 {RSP_dict[str(start)]}를 냈습니다.{str(end)}번째 친구는 {RSP_dict[str(end)]}를 냈습니다. 가위바위보! 승자는 {RSP(str(start),str(end))}번친구')
-    return RSP(str(start),str(end))     # 3. 리턴된 start와 end를 가위바위보 시키고 또 승자를 리턴
+    return RSP(str(start),str(end))     # 5. 리턴된 start와 end를 가위바위보 시키고 또 승자를 리턴
 
 
 for tc in range(1, T+1):
@@ -45,6 +45,6 @@ for tc in range(1, T+1):
     # 인덱스랑 값 같이 빼기 위해 사용
     RSP_dict = {}
     for i in range(N):
-        RSP_dict[str(i+1)] = arr[i]        # {'0': 1, '1': 3, '2': 2, '3': 1}
+        RSP_dict[str(i+1)] = arr[i]        # {'0': 1, '1': 5, '계산기': 계산기, '5': 1}
 
     print(f'#{tc} {divide(1,N)}')

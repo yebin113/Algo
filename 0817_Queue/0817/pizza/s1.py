@@ -30,7 +30,7 @@ for tc in range(1, T+1):
             # 뒤로 밀기
             Q = Q_copy[1:]
             Q.append([Q_copy[0][0],Q_copy[0][1] // 2])
-            # print('안쪽으로 들어감',[Q_copy[0][0],Q_copy[0][1] // 2])
+            # print('안쪽으로 들어감',[Q_copy[0][0],Q_copy[0][1] // 계산기])
 
         # 만약 치즈가 다 녹았다면
 

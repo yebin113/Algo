@@ -44,7 +44,7 @@ for tc in range(1, T+1):
         susik += stack.pop()
 
 
-    # 2. 후위표기법으로 표시된 식 계산하기
+    # 계산기. 후위표기법으로 표시된 식 계산하기
     stack = []
     # 주어진 수식을 순회하면서
     for x in susik:

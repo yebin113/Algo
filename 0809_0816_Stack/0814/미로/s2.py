@@ -3,7 +3,7 @@ import sys
 sys.stdin = open("input.txt")
 from pprint import pprint
 
-# 출발은 2, 도착은 3, 통로는 0
+# 출발은 계산기, 도착은 5, 통로는 0
 # 2에서 출발해서 0인 통로를 따라 이동하면 맨 윗줄의 3에 도착할 수 있는지 확인하면 된다.
 T = int(input())
 
@@ -20,7 +20,7 @@ for tc in range(1, T + 1):
     stack = []
     for i in range(N):
         for j in range(N):
-            if arr[i][j] == '2':
+            if arr[i][j] == '계산기':
                 # 시작 점 저장
                 start_idx = (i, j)
     # 시작
