@@ -35,9 +35,4 @@ for tc in range(1,T+1):
             result += tree[N]
         print(tree)
 
-
-
-
-    root = 1
-    inorder(1)
-    print(f'#{tc} {tree[1]} {tree[N // 2]}')
+    print(f'#{tc} {result}')
