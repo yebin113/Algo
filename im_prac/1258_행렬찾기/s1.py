@@ -12,35 +12,52 @@ for tc in range(1, T + 1):
     # 저장된 창고 크기
     N = int(input())
     arr = [list(map(int, input().split())) for i in range(N)]
-    # 차원 행렬 저장
+    visited = [[0]*N for i in range(N)]
     dim_list = []
-
-    little_arr = []
     i = 0
     j = 0
-
+    dim_x = 1
+    dim_j = 0
     while i < N and j < N:
+        # 만약 빈용기가 아니고 방문한 곳이 아닐때
+        while 0<=j<N and arr[i][j]!= 0 and visited[i][j] == 0:
+            print(f'여기는 {i}번째{j}칸 빈용기가 아님')
+            # 방문표시
+            visited[i][j] = 1
+            # 가로행렬 표시
+            dim_j += 1
+            # 다음이 빈용기가 아닐때까지 다음으로 이동
+            j += 1
+            # 다음이 아니면 i줄 저장해둠
+            if j+1 >= N or arr[i][j+1]== 0 or visited[i][j+1] != 0:
+                j -= 1
+                kumsa_i = i
 
-        little_row = []
-
-        while arr[i][j] != 0:
-            # 다음칸이 0이 아니면
-            if arr[i][j + 1] >= 1:
-                # 행 요소에 추가
-                little_row.append(arr[i][j])
-                # 열 인덱스를 하나 늘려줌
+        # 밑에줄이 범위 밖이거나 빈용기가 아닐때까지
+        while 0 <= i+1 < N and arr[i+1][j] != 0 and visited[i+1][j] == 0:
+            # 행렬 정보
+            dim_x +=1
+            i += 1
+            # 방문표시
+            visited[i][j] = 1
+            # 다음줄이 비었을때
+            if i+1 >= N or arr[i+1][j]== 0 or visited[+1][j] != 0:
                 j += 1
-            # 다음칸이 0이 아니고 다음 줄이 존재한다면
-            elif arr[i + 1][j] >= 1:
-                # 요소를 늘려줌
-                little_arr.append(little_row)
-                # 다음줄로 넘어감
-                i += 1
+                i = kumsa_i
+                # 행렬 정보 넣기
+                dim_list.append(dim_x * dim_j)
 
-        dim_list.append(len(little_arr[0]))
-        dim_list.append(len(little_arr)-1)
-        print(dim_list)
-        i += 1
+                # 초기화
+                dim_j = 0
+                dim_x = 1
+
+        print(visited)
+
         j += 1
+        if j == N:
+            i += 1
+            j = 0
+
+    print(dim_list)
 
 

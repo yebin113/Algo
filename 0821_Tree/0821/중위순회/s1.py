@@ -2,7 +2,6 @@ import sys
 sys.stdin = open("input.txt")
 
 T = 10
-word_list = []
 
 """
 def inorder_traverse (T) :  # 중위순회
