@@ -9,11 +9,13 @@ for tc in range(1, T+1):
     N, M, K = map(int,input().split())
     # 예약손님 도착시간(정렬되어있지 않다)
     arr = list(map(int, input().split()))
+
     arr.sort()
     count_boong = [0]*(max(arr)+1)
     count_guest = [0]*(max(arr)+1)
     j = 0
-    for i in range(1,max(arr)+1):
+    # 0초에 오는 손님도 있습니다...
+    for i in range(0,max(arr)+1):
         # 만약 현재 시간이 arr현재값과 똑같다면..
         if arr[j] == i:
             count_guest[i] += 1
