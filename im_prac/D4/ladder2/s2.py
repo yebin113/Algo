@@ -63,4 +63,4 @@ for _ in range(T):
         if min_distance > distance_list[i][1]:
             min_distance = distance_list[i][1]
             min_start = distance_list[i][0]
-    print(tc, min_start)
+    print(tc, distance_list)
