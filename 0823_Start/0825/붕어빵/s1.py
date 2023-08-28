@@ -14,7 +14,7 @@ for tc in range(1, T+1):
     count_boong = [0]*(max(arr)+1)
     count_guest = [0]*(max(arr)+1)
     j = 0
-    # 0초에 오는 손님도 있습니다...
+    # 0초에 오는 손님도 있더라..-> 틀린 포인트
     for i in range(0,max(arr)+1):
         # 만약 현재 시간이 arr현재값과 똑같다면..
         if arr[j] == i:
@@ -29,6 +29,7 @@ for tc in range(1, T+1):
         count_boong[i] += count_boong[i] + count_boong[i-1]
 
     ans = 'Possible'
+    # 붕어빵누직수보다  누적 손님수가높으면 불가능~
     for i in range(max(arr) + 1):
         if count_guest[i] > count_boong[i]:
             ans = 'Impossible'
