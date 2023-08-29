@@ -96,7 +96,7 @@ for tc in range(1, T+1):
             for m in range(7):
                 binary_one += twoamho[m * banbok + 7 *banbok* k]
             two_code.append(binary_one)
-            # 7자짜리 이진법이 해독 딕셔너리에 있다면
+            # 7자짜리 이진코드가 해독 딕셔너리에 있다면
             if binary_one in decoder.keys():
                 # 추가
                 ten_code.append(decoder[binary_one])
