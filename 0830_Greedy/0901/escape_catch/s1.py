@@ -50,12 +50,8 @@ def bfs(i,j):
                 if 0<= ni < N and 0<= nj <M and arr[ni][nj] in [1,2,4,7] and visited[ni][nj] == 0:
                     visited[ni][nj] = visited[i][j]+1
                     q.append((ni,nj))
-                elif 0<= ni < N and 0<= nj <M and arr[ni][nj] not in [1,2,4,7] and visited[ni][nj] == 0:
-                    print(f'못가요 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
-                elif 0<= ni < N and 0<= nj <M and visited[ni][nj] != 0:
-                    print(f'이미 방문함 지금 {i} {j} 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
-                else:
-                    print('뭐지...')
+                    print(f'고,,지금 {i} {j} 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
+
             # 위로 갈땐
             elif di == -1:
                 # 범위 안에 있고 다음칸이 아래로 갈수 있는 구조물일때,, 그리고 방문하지않은 곳이면
@@ -63,21 +59,23 @@ def bfs(i,j):
 
                     visited[ni][nj] = visited[i][j]+1
                     q.append((ni,nj))
+                    print(f'고,,지금 {i} {j} 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
 
             elif dj == 1:
                 # 범위 안에 있고 다음칸이 오른쪽으로 갈수 있는 구조물일때,, 그리고 방문하지않은 곳이면
                 if 0<= ni < N and 0<= nj <M and arr[ni][nj] in [1,3,6,7] and visited[ni][nj] == 0:
                     visited[ni][nj] = visited[i][j]+1
-
                     q.append((ni,nj))
+                    print(f'고,,지금 {i} {j} 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
 
 
             elif dj == -1:
                 # 범위 안에 있고 다음칸이 왼쪽으로 갈수 있는 구조물일때,, 그리고 방문하지않은 곳이면
                 if 0<= ni < N and 0<= nj <M and arr[ni][nj] in [1,3,4,5] and visited[ni][nj] == 0:
                     visited[ni][nj] = visited[i][j]+1
-
                     q.append((ni,nj))
+                    print(f'고,,지금 {i} {j} 새로운 위치 {ni} {nj} 지금 칸 {structure_help[arr[i][j]]} 다음 칸 {structure_help[arr[ni][nj]]}')
+
     pprint.pprint(visited)
     cnt = 0
     for k in range(N):
