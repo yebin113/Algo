@@ -84,15 +84,15 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
             # 자기자신은 넘기기
             if g1[j]==k:
                 continue
-            print("마을 1",g1,g2,"지금 검사하는 마을위치",g1[j],"인접 확인 마을", k, visit)
+            # print("마을 1",g1,g2,"지금 검사하는 마을위치",g1[j],"인접 확인 마을", k, visit)
             for m in range(len(visit)):
-                print('현재 검사 마을',k,',',m,'번째 방문마을',visit[m])
+                # print('현재 검사 마을',k,',',m,'번째 방문마을',visit[m])
                 if visit[m] == k:
-                    print(f'{k}는 {m}번째에 있다..')
+                    # print(f'{k}는 {m}번째에 있다..')
                     break
                 # 가는 길목에 다른 그룹의 마을이 있을 경우..
                 elif visit[m] in g2:
-                    print('안됩니다')
+                    # print('안됩니다')
                     flag = False
                     break
                 
