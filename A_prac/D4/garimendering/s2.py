@@ -50,7 +50,6 @@ for i in range(1, N + 1):
     for j in range(1, arr_l[0] + 1):
         # 인접한 구역의 번호가 주어짐 -> 인접 리스트 만들기
         arr[i][arr_l[j]] = 1
-
 # 2. 1~N번 지역을 부분집합으로 나누기
 area = [i for i in range(1, N + 1)]
 
@@ -79,9 +78,24 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
 
         # 만약 현재의 부분집합에 담겨있는 마을들이 인접리스트에 없다면..
         for k in g1:
-            if k not in visit:
-                flag = False
+            # 마을의 집합이 1개면 넘기기
+            if len(g1)==1:
                 break
+            # 자기자신은 넘기기
+            if g1[j]==k:
+                continue
+            print("마을 1",g1,g2,"지금 검사하는 마을위치",g1[j],"인접 확인 마을", k, visit)
+            for m in range(len(visit)):
+                print('현재 검사 마을',k,',',m,'번째 방문마을',visit[m])
+                if visit[m] == k:
+                    print(f'{k}는 {m}번째에 있다..')
+                    break
+                # 가는 길목에 다른 그룹의 마을이 있을 경우..
+                elif visit[m] in g2:
+                    print('안됩니다')
+                    flag = False
+                    break
+                
         if flag == False:
             break
     # 1번 그룹이 안되면 이 다음 반복문은 건너 뛰기.
@@ -94,9 +108,11 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
         g2_people += people[g2[j] - 1]
         # 방문 리스트 받기
         visit = dfs(g2[j], N, arr)
+
         # 만약 현재의 부분집합에 담겨있는 마을들이 인접리스트에 없다면..
         for k in g2:
             if k not in visit:
+
                 flag = False
                 break
         if flag == False:
