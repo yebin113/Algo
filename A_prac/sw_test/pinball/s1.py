@@ -11,7 +11,10 @@ def play(i, j, dir):
     sti = i
     stj = j
     cnt = 0
-    while 0 <= i < N and 0 <= j < N:
+    a = 0
+    while a < 10 and 0 <= i < N and 0 <= j < N:
+        a += 1
+        print(i,j,dir)
         # 방향 get
         di, dj = dij[dir]
         # 새로운 인덱스
@@ -80,6 +83,11 @@ def play(i, j, dir):
                         break
                 # 벽에 부딫힐때..
             else:
+                cnt += 1
+                if dir < 2:
+                    dir += 2
+                else:
+                    dir -= 2
 
 
     return cnt
