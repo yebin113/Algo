@@ -29,6 +29,8 @@ def dfs(start, V, arr):
             if len(stack) != 0:
                 # pop
                 start = stack.pop()
+                # 돌아오는 길목도 넣기
+                visited.append(start)
             # 스택이 없으면 다 돈거니까 탈출~
             else:
                 break
@@ -58,8 +60,7 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
     g2 = []
     g1_people = 0
     g2_people = 0
-    # for문을 A그룹, B그룹 나눠서 돌릴거라서 한그룹이 안될때 break조건으로 사용할 것
-    flag = True
+
 
     for j in range(N):
         if i & (1 << j):
@@ -70,13 +71,14 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
     # 3. 인접한지 확인하기
     # 첫번째 그룹 확인
     for j in range(len(g1)):
+        flag = True
         # 마을사람수 구하기
         g1_people += people[g1[j] - 1]
 
         # 방문 리스트 받기
         visit = dfs(g1[j], N, arr)
-
-        # 만약 현재의 부분집합에 담겨있는 마을들이 인접리스트에 없다면..
+        # print(visit)
+        # k가 g1의 모든 마을에 인접한지 확인
         for k in g1:
             # 마을의 집합이 1개면 넘기기
             if len(g1)==1:
@@ -86,18 +88,30 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
                 continue
             # print("마을 1",g1,g2,"지금 검사하는 마을위치",g1[j],"인접 확인 마을", k, visit)
             for m in range(len(visit)):
-                # print('현재 검사 마을',k,',',m,'번째 방문마을',visit[m])
-                if visit[m] == k:
-                    # print(f'{k}는 {m}번째에 있다..')
+                flag = True
+                # 시작점 출발
+                if visit[m] == g1[j]:
+                    # 시작점으로 부터..중간에 다른그룹있는지 확인
+                    for l in range(m,len(visit)):
+                        # 가는길에 다른 그룹이 있으면
+                        if visit[l] in g2:
+                            flag = False
+                            break
+                        # 도착점에 flag가 False가 아닌채로 도착했다면?
+                        elif visit[l] == k:
+                            # 깃발2 표시
+                            flag = "T"
+                            break
+                # 깃발 최종 완성이면 다음 마을 검사해야함
+                if flag == "T":
                     break
-                # 가는 길목에 다른 그룹의 마을이 있을 경우..
-                elif visit[m] in g2:
-                    # print('안됩니다')
-                    flag = False
-                    break
-                
-        if flag == False:
-            break
+
+            # 반복문 하나하나에서 flag가 T가 아니면
+            if flag != "T":
+                # False로 바꿔주고
+                flag = False
+                # 탈출
+                break
     # 1번 그룹이 안되면 이 다음 반복문은 건너 뛰기.
     if flag == False:
         continue
@@ -118,7 +132,7 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
         if flag == False:
             break
     # 만약 반복문을 다 돌고도 깃발이 서있다면 가능한 부분집합
-    if flag == True:
+    if flag != False:
         # 4. 인원수의 차 구하고 최솟값 갱신
         cha = abs(g1_people - g2_people)
         if cha == 0:
