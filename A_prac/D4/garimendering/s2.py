@@ -74,34 +74,27 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
         flag = True
         # 마을사람수 구하기
         g1_people += people[g1[j] - 1]
+        # 마을의 집합이 1개면 넘기기
+        if len(g1) == 1:
+            break
 
         # 방문 리스트 받기
         visit = dfs(g1[j], N, arr)
-        # print(visit)
-        # k가 g1의 모든 마을에 인접한지 확인
+        # k가 g1의 모든 마을에 인접한 지 확인
         for k in g1:
-            # 마을의 집합이 1개면 넘기기
-            if len(g1)==1:
-                break
-            # 자기자신은 넘기기
-            if g1[j]==k:
+            # 자기 자신은 넘기기
+            if g1[j] == k:
                 continue
-            # print("마을 1",g1,g2,"지금 검사하는 마을위치",g1[j],"인접 확인 마을", k, visit)
+            last_visit = g1[j]
+
             for m in range(len(visit)):
                 flag = True
-                # 시작점 출발
-                if visit[m] == g1[j]:
-                    # 시작점으로 부터..중간에 다른그룹있는지 확인
-                    for l in range(m,len(visit)):
-                        # 가는길에 다른 그룹이 있으면
-                        if visit[l] in g2:
-                            flag = False
-                            break
-                        # 도착점에 flag가 False가 아닌채로 도착했다면?
-                        elif visit[l] == k:
-                            # 깃발2 표시
-                            flag = "T"
-                            break
+                if visit[m] == k:
+                    flag='T'
+                    break
+                # 마지막 방문지점 갱신
+                elif visit[m] in g1 and visit[m-1] == last_visit:
+                    last_visit = visit[m]
                 # 깃발 최종 완성이면 다음 마을 검사해야함
                 if flag == "T":
                     break
@@ -122,15 +115,34 @@ for i in range(1, 1 << (N - 1)):  # 공집합 제외, 중복되는 경우 제외
         g2_people += people[g2[j] - 1]
         # 방문 리스트 받기
         visit = dfs(g2[j], N, arr)
-
-        # 만약 현재의 부분집합에 담겨있는 마을들이 인접리스트에 없다면..
-        for k in g2:
-            if k not in visit:
-
-                flag = False
-                break
-        if flag == False:
+        if len(g2) == 1:
             break
+
+        # k가 g1의 모든 마을에 인접한 지 확인
+        for k in g2:
+            # 자기 자신은 넘기기
+            if g2[j] == k:
+                continue
+            last_visit = g2[j]
+
+            for m in range(len(visit)):
+                flag = True
+                if visit[m] == k:
+                    flag = 'T'
+                    break
+                # 마지막 방문지점 갱신
+                elif visit[m] in g2 and visit[m - 1] == last_visit:
+                    last_visit = visit[m]
+                # 깃발 최종 완성이면 다음 마을 검사해야함
+                if flag == "T":
+                    break
+
+            # 반복문 하나하나에서 flag가 T가 아니면
+            if flag != "T":
+                # False로 바꿔주고
+                flag = False
+                # 탈출
+                break
     # 만약 반복문을 다 돌고도 깃발이 서있다면 가능한 부분집합
     if flag != False:
         # 4. 인원수의 차 구하고 최솟값 갱신
