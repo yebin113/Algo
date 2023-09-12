@@ -17,6 +17,7 @@ for tc in range(1, T+1):
             password.append(''.join(arr[(N//4)*i:(N//4)*i+(N//4)]))
     # 중복삭제
     password = list(set(password))
+    # print(password)
     # 16진수에서 10진수로 변경
     for i in range(len(password)):
         password[i] = int(password[i], 16)
