@@ -10,9 +10,9 @@ def merge(left, right):
     i = 0
     j = 0
     # 한 쪽이 빌 때까지 반복
-    while i<len(left)or j<len(right):
+    while i < len(left) or j < len(right):
         # 둘 다 남아 있으면, 두 리스트의 가장 앞에 있는 것 중 작은 것을 선택하여 result 에 추가
-        if i<len(left) and j<len(right):
+        if i < len(left) and j < len(right):
 
             if left[i] <= right[j]:
                 result.append(left[i])
