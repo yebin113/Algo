@@ -1,3 +1,25 @@
+from collections import deque
+def bfs(i,j):
+    visited = [[0] * M for _ in range(N)]
+    visited[i][j] = 1
+    end = 0
+    q = deque()
+    q.append((i,j))
+    while q:
+        i,j = q.popleft()
+        for di, dj in dxy:
+            ni = i + di
+            nj = j + dj
+            # 범위 안에 있고, 토마토가 익지 않았으며 큐에 없을때
+            if 0 <= ni < N and 0 <= nj < M and tomatoes[ni][nj] == 0 and visited[ni][nj] == 0:
+                # 토마토를 익게 하고, 방문표시 하고 큐에 넣기
+                tomatoes[ni][nj] = 1
+                visited[ni][nj] = visited[i][j] + 1
+                end = visited[ni][nj]
+                q.append((ni,nj))
+    return end
+
+
 # M은 상자의 가로 칸의 수, N은 상자의 세로 칸
 M, N = map(int, input().split())
 # 정수 1은 익은 토마토, 정수 0은 익지 않은 토마토, 정수 -1은 토마토가 들어있지 않은 칸
@@ -9,7 +31,7 @@ dxy = [[0, -1], [-1, 0], [0, 1], [1, 0]]
 # 저장될 때부터 모든 토마토가 익어있는 상태이면 0을 출력해야 하고
 flag = True
 flag2 = True
-# 토마토가 모두 익지는 못하는 상황이면 -1을 출력
+
 for i in range(N):
     # 익은 토마토가 없는 경우 체크
     if tomatoes[i].count(1) != 0:
@@ -20,35 +42,24 @@ for i in range(N):
     if tomatoes[i].count(0) != 0:
         flag2 = False
         break
-
 # 익은 토마토가 없다면 익을 수 없음..
 if flag:
     day = -1
 elif flag2:
     day = 0
 else:
-    while True:
-        visited = [[0]*M for _ in range(N)]
-        change = 0
-        # 익은 토마토가 있는 장소를 찾는다
-        for i in range(N):
-            for j in range(M):
-                if tomatoes[i][j] == 1 and visited[i][j] == 0:
-                    # 델타 네방향을 찾는다
-                    for di, dj in dxy:
-                        ni = i + di
-                        nj = j + dj
-                        # 새로운 인덱스가 범위 안에 있고, 익지 않았으며, -1이 아닐때
-                        if 0 <= ni < N and 0 <= nj < M and tomatoes[ni][nj] == 0:
-                            # 주변 토마토가 익는다
-                            tomatoes[ni][nj] = 1
-                            change += 1
-                            # 방문 표시
-                            visited[ni][nj] = 1
+    day = 0
+    start = []
+    for i in range(N):
+        for j in range(M):
+            if tomatoes[i][j] == 1:
+                start.append((i,j))
+    for i,j in start:
+        end = bfs(i,j)
+        # 더 오래 걸리는 날 갱신
+        if day < end:
+            day = end
 
-        if change == 0:
-            break
-        day += 1
 
     # 만약 다 했는데 못익은 토마토가 존재하면..
     for i in range(N):

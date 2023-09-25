@@ -20,7 +20,6 @@ def dfs(x,y,route,direction):
             dfs(x+dir[direction+1][0], y+dir[direction+1][1],route+[arr[x][y]],direction+1)
 
 
-    pass
 T = int(input())
 # 좌하 -> 우하 -> 우상 -> 좌상
 dir = [[1, -1],[1, 1] , [-1, 1],[-1, -1]]
