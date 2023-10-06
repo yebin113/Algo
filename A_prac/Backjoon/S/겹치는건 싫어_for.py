@@ -1,16 +1,4 @@
-# 슬라이싱 대체 뭘로 하지..............
-# 카운트는 set로 필요한 값만 카운트 -> 2%
-
-# 수열 중복 체크
-def check(i, j):
-    arr1 = arr[i:j+1]
-    check_set= list(set(arr1))
-    for m in check_set:
-        if arr1.count(m) > K:
-            return False
-    return True
-
-
+# 쭉하면서 카운트 세고 젤 많은거 K개 넘어가면 그 거부터 다시 시작!
 
 from sys import stdin
 
@@ -23,11 +11,7 @@ minus = [0] * N
 if len(list(set(arr)))==1:
     print(K)
 else:
-    i = 0
-    j = N-1
-    while j-i+1 > K:
-        if check(i,j):
-            max_len = max(max_len,j-i+1)
-            break
+    len_now = 0
+
 
 
