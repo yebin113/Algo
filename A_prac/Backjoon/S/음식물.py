@@ -1,5 +1,29 @@
 import sys
-import pprint
+from collections import deque
+def bfs(i,j):
+    visit = [[0] * M for _ in range(N)]
+    out = 0
+    q = deque()
+    q.append((i,j))
+    visited[i][j]=1
+    visit[i][j] = 1
+
+    while q:
+        i,j = q.popleft()
+        for di,dj in dxy:
+            ni = i+di
+            nj=j+dj
+            if 0<=ni<N and 0<=nj<M and arr[ni][nj]==1 and visit[ni][nj]==0:
+                q.append((ni,nj))
+                visit[ni][nj] = 1
+    for k in range(N):
+        for m in range(M):
+            if visit[k][m] ==0:
+                continue
+            out += 1
+    return out
+
+
 dxy = [[0, -1], [-1, 0], [0, 1], [1, 0]]
 # 세로 길이 N과 가로 길이 M 그리고 음식물 쓰레기의 개수 K
 N, M, K = map(int, sys.stdin.readline().split())
@@ -9,21 +33,15 @@ for _ in range(K):
     r, c = map(int, sys.stdin.readline().split())
     r -= 1
     c -= 1
-    counts = 0
-    for di, dj in dxy:
-        ni = r + di
-        nj = c + dj
-        # 주변이 범위 안에 있고, 0이 아닐때!
-        if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] != 0:
-            counts += 1
-            arr[r][c] = arr[ni][nj] + counts
-            pprint.pp(arr)
-        else:
-            arr[r][c] = 1
+
+    arr[r][c] = 1
 max_size = 0
+visited = [[0] * M for _ in range(N)]
 for i in range(N):
     for j in range(M):
-        if arr[i][j] != 0:
-            max_size = max(arr[i][j], max_size)
+        if arr[i][j] != 0 and visited[i][j] == 0:
+            max_size=max(bfs(i,j),max_size)
+
+
 
 print(max_size)
