@@ -12,7 +12,7 @@ def find_set(x):
 
 # union
 def union(x, y):
-    global check
+    check = False
     # 1. 이미 같은 집합인 지 체크
     x = find_set(x)
     y = find_set(y)
@@ -20,7 +20,8 @@ def union(x, y):
     # 대표자가 같으니, 같은 집합이다.
     if x == y:
         check = True
-        return
+        # print('사이클발생')
+        return check
 
     # 2. 다른 집합이라면, 같은 대표자로 수정
     if x < y:
@@ -29,7 +30,7 @@ def union(x, y):
     else:
         parent[x] = y
 
-
+    return check
 
 from sys import stdin
 cnt = 0
@@ -39,14 +40,17 @@ while True:
     if n == 0 and m==0:
         break
     parent = [i for i in range(n+1)]
-    check  = False
+    check  = 0
     for _ in range(m):
         f,t = map(int,stdin.readline().split())
-        union(f,t)
+        if union(f,t):
+            check +=1
+
+
     # print(parent)
-    tree = len(set(parent))-1
+    tree = len(set(parent))-1 - check
     print(f'Case {cnt}:',end=' ')
-    if check:
+    if tree<=0:
         print('No trees.')
     elif tree > 1:
         print(f'A forest of {tree} trees.')
