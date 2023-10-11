@@ -31,25 +31,19 @@ def make_gwal(i,p):
     global max_num
     if i>=N//2:
         sik = deque()
-
-
-
-
-
-
-
-
-
-
-        for j in range(0, len(fx) - 1, 2):
-            print(p, j//2)
-            if str(j//2) in p:
-                sik.extend([operator_2(fx[j],fx[j+1],fx[j+2]),fx[j+3]])
-
+        for j in range(1, len(fx) - 1, 2):
+            if str((j-1)//2) in p:
+                num = operator_2(fx[j-1],fx[j],fx[j+1])
+                sik.append(num)
+            elif str((j-1)//2) not in p and str((j-3)//2) in p:
+                sik.append(fx[j])
             else:
-                sik.extend([fx[j], fx[j + 1]])
-        sik.append(fx[-1])
-        print(sik)
+                sik.append(fx[j-1])
+                sik.append(fx[j])
+
+        if str(N//2-1) not in p:
+            sik.append(fx[-1])
+        # print(sik)
         result = operator(sik)
         max_num = max(max_num,result)
 
@@ -59,23 +53,12 @@ def make_gwal(i,p):
         make_gwal(i+1,p)
 
 
-    for j in range(0, len(sik) - 1, 2):
-        new_sik = sik[:j] + [operator_2(sik[j], sik[j + 1], sik[j + 2])] + sik[j + 3:]
-        used[j] = 1
-        used[j+1] = 1
-        used[j+2] = 1
-
-        max_num = max(max_num,operator(new_sik))
-
-
 N = int(stdin.readline())
 fx = list(stdin.readline().strip())
-max_num = 0
+max_num = -10000000000
 used = [0]*(N//2)
 p=deque()
 make_gwal(0,'')
-
-
 
 
 print(max_num)
