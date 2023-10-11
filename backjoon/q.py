@@ -27,12 +27,13 @@ def empty():
     else:
         print(1)
 
-
+from sys import stdin
 from collections import deque
 N = int(input())
 q = deque()
 for i in range(N):
-    arr = list(input().split())
+    arr = list(stdin.readline().split())
+    # print(arr)
     if arr[0]=='push':
         push(int(arr[1]))
     elif arr[0] =='pop':
