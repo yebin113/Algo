@@ -1,27 +1,30 @@
 from sys import stdin
-
-
-def how_many_kill(p1, p2, p3, arr):
+import pprint
+import copy
+def how_many_kill(p1, p2, p3):
+    board = copy.deepcopy(arr)
+    # print('궁수들의 위치',p1,p2,p3)
     kill = 0
     forward = N - 1
     while forward >= 0:
         c1, c2, c3 = 1, 1, 1
+        # print(f'적들이 얼마나 남았는지, 지금은 {N-1- forward}번째 턴')
+        # pprint.pprint(board)
         for i in range(forward,-1,-1):
             for j in range(M):
-                if arr[i][j] == 1:
-                    # 첫번째 사람이 죽일 수 있나?
-                    if c1 and can_kill((N,p1), (i, j)):
+                if board[i][j] == 1:
+                    if c1 and can_kill((forward+1,p1), (i, j)):
                         c1 -= 1
                         kill += 1
-                        arr[i][j] = 0
-                    elif c2 and can_kill((N,p2), (i, j)):
+                        board[i][j] = 0
+                    elif c2 and can_kill((forward+1,p2), (i, j)):
                         c2 -= 1
                         kill += 1
-                        arr[i][j] = 0
-                    elif c3 and can_kill((N,p3), (i, j)):
+                        board[i][j] = 0
+                    elif c3 and can_kill((forward+1,p3), (i, j)):
                         c3 -= 1
                         kill += 1
-                        arr[i][j] = 0
+                        board[i][j] = 0
                 if c1 + c2 + c3 == 0:
                     break
             if c1 + c2 + c3 == 0:
@@ -60,7 +63,7 @@ from itertools import combinations
 zohap = list(combinations(range(M), 3))
 many_kill = 0
 for p1,p2,p3 in zohap:
-    kill = how_many_kill(p1,p2,p3,arr)
+    kill = how_many_kill(p1,p2,p3)
     many_kill = max(many_kill,kill)
 print(many_kill)
 # 2. 골라진 세 칸에서 제거할 수 있는 최대 적을 갱신
