@@ -12,11 +12,10 @@ for _ in range(M):
     arr = list(map(int, stdin.readline().split()))
     # 정렬시키고 축소 시킨 우주(같은거 삭제)
     set_arr = sorted(list(set(arr)))
-    # 대소관계 체크
-    count_uni = [0] * N
-    for i in range(N):
-        # 원래의 우주에서 행성이 축소시킨 우주에서 몇번째 행성인지 입력
-        count_uni[i] = set_arr.index(arr[i]) + 1
+    # 시간 단축을 위해 딕셔너리 사용
+    rank = {set_arr[i] : i for i in range(len(set_arr))}
+    count_uni = [rank[arr[i]] for i in range(N)]
+
     if count_uni not in set_uni:
         set_uni.append(count_uni)
         check_idx[set_uni.index(count_uni)] += 1

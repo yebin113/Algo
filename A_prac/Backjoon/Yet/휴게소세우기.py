@@ -1,14 +1,21 @@
-def make_H(location,l):
-    pass
-
-def find_distance(location):
-    distance = [0] * len(location)
-    for i in range(len(distance)-1):
-        distance[i] = location[i + 1] - location[i]
-    distance[-1] = L - location[-1]
-    return distance
-
-N,M,L = map(int,input().split())
-where = list(map(int,input().split()))
+N, M, L = map(int, input().split())
+where = list(map(int, input().split()))
 where.sort()
-dis = find_distance(where)
+
+max_length = where[-1] - where[0]
+min_length = 1
+ans = max_length
+while min_length <= max_length:
+    middle = (min_length + max_length) // 2
+    rest = 1
+    start = where[0]
+    for i in range(N):
+        if where[i] >= middle + start:
+            start = where[i]
+            rest += 1
+    if rest >= L:
+        min_length = middle + 1
+        ans = middle
+    else:
+        max_length = middle - 1
+print(ans)
