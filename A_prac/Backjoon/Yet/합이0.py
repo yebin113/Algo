@@ -13,3 +13,5 @@ for i in range(len(set_arr)-1):
             C = arr.count(-(set_arr[i]+set_arr[j]))
             count = A*B*C
 print(count)
+
+
