@@ -10,5 +10,3 @@ while min_length <= max_length:
     middle = (min_length + max_length) // 2
     rest = 0
     for i in range(N):
-        if where[i] > max_length:
-            rest += where[i]//max_length + (1)**
