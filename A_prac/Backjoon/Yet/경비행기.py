@@ -30,6 +30,9 @@ while start <= end:
     oil_station[i:] = sorted(oil_station[i:],key=lambda x: ((x[0]-sti) ** (2) + (x[1]-stj) ** (2)) ** (1 / 2))
     for i in range(N):
         oil = dis_to_oil(sti, stj, oil_station[i][0], oil_station[i][1])
+        # 지금위치보다 목적지에서 더 떨어져 있을떼 빼기!
+        if dis_to_oil(sti, stj, 10000, 10000) <= oil:
+            continue
         if oil >= mid:
             sti = oil_station[i][0]
             stj = oil_station[i][1]
