@@ -10,26 +10,23 @@ for i in range(1,N+1):
 # print(where)
 # print(distance)
 
-start = 0
-end = L
-ans = L
+start = 1
+end = L-1
+ans = 0
 while start <= end:
     mid = (start+end)//2
+    if mid == 0:
+        continue
     count_h = 0
-    max_length = 0
-    for i in range(N+1):
-        now_count = distance[i] // mid
-        count_h += now_count
-        length = distance[i]
-        if now_count != 0:
-            length = math.ceil(distance[i] / (now_count+1))
-        max_length = max(max_length, length)
+    for i in range(0,len(distance)):
+        if distance[i] > mid:
+            count_h += (distance[i] - 1)//mid
         # print(f'distance {distance[i]} mid {mid} 휴게소 {count_h} length {length}')
 
     # 만약 휴게소가 M개보다 덜 지어졌다면
     if count_h <= M:
         end = mid - 1
-        ans = max_length
+        ans = mid
     else:
         start = mid + 1
     # print(f'start {start} end {end} mid {mid} ans {ans} 지어진 휴게소 {count_h}')
