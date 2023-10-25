@@ -6,14 +6,14 @@ input = sys.stdin.readline
 
 N, G, K = map(int, input().split())
 data = deque()
-max_day = 0
+
 for i in range(N):
     Si, Li, Oi = map(int, input().split())
-    max_day = max(G//Si + Li, max_day)
+
     data.append([Si, Li, Oi])
 
 start = 0
-end = max_day
+end = int(2e9)
 ans = 0
 
 while start <= end:
@@ -26,14 +26,18 @@ while start <= end:
         S,L,O = data[i]
         germ = S * max(1,mid-L)
         germ_hap += germ
-        # 뺄수 있는 것들
-        if O == 1:
+        # 뺄수 있는 것들 (최대힙으로 저장)
+        if K != 0:
+            if O == 1:
+                if len(germs_sort) < K:
+                    heappush(germs_sort,germ)
+                elif min(germs_sort) < germ:
+                    heappush(germs_sort, germ)
+    # print('plus',germs_sort)
 
-            heappush(germs_sort,(-germ,germ))
-    # K개만큼 뺌
-    for i in range(K):
-        germ_hap -= heappop(germs_sort[1])
-
+    for i in range(len(germs_sort) - K):
+        heappop(germs_sort)
+    germ_hap -= sum(germs_sort)
     # 세균의 합이 G보다 작으면(조건 충족)
     if germ_hap < G:
         start = mid + 1

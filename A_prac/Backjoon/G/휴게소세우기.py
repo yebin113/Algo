@@ -7,8 +7,6 @@ distance = [where[1]]+[0]*N
 for i in range(1,N+1):
     distance[i] = where[i+1]-where[i]
 
-# print(where)
-# print(distance)
 
 start = 1
 end = L-1
