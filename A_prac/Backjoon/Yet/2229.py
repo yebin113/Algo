@@ -7,55 +7,21 @@ point = list(map(int, input().split()))
 10
 2 5 7 1 3 4 8 6 9 3
 """
+dp=[0]*(N)
+
 start = 0
-end = 1
-while end <= N:
-    end += 1
-    arr = point[start:end]
-    if len(arr) < 2:
-        continue
-    # 현재 점수
-    jumsu = max(arr) - min(arr)
-    arr2 = point[end:]
-    if
+for i in range(1,N):
+    max_num = point[i]
+    min_num = point[i]
+    for j in range(i,-1,-1):
+        # i 번째부터 뒤로 돌아가면서 최대 최소와를 갱신
+        # 원래 dp값과 1칸 전의 점수 + 현재 점수를 더하며 최대 갱신
+        max_num = max(max_num,point[j])
+        min_num = min(min_num, point[j])
 
+        if j == 0:
+            dp[i] = max(dp[i], max_num - min_num)
+        else:
+            dp[i] = max(dp[i], max_num - min_num + dp[j - 1])
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# # 1. 이분탐색 실패
-# start = 0
-# end = max(point) * N
-# max_jumsu = 0
-# while start <= end:
-#     mid = (start + end) // 2
-#     print(f'start {start},end {end} mid {mid}')
-#     hap = 0
-#     location = 0
-#     for i in range(N):
-#         arr = point[location:i + 1]
-#         if max(arr) - min(arr) > mid:
-#             hap += max(arr) - min(arr)
-#             location = i + 1
-#         print(
-#             f'location: {location} i : {i} max(arr) : {max(arr)} - min(arr) : {min(arr)} = {max(arr) - min(arr)} hap {hap}')
-#     if max_jumsu <= hap:
-#         max_jumsu = hap
-#         end = mid - 1
-#     else:
-#         start = mid + 1
-#     print(f'start {start},end {end} mid {mid} max_jumsu {max_jumsu}')
-# print(max_jumsu)
+print(dp[N-1])
