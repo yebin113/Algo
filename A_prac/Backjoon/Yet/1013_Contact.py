@@ -60,7 +60,7 @@ for _ in range(T):
     check = True
     # 맨 끝이 0으로 끝나거나 1로 시작하는데 2글자 이내면 무조건 아님
     # 3글자짜리 패턴도 없음
-    if wave[-1] == '0' or (len_wave <= 2 and wave[0] == '1') or len_wave == 3:
+    if wave[-1] == '0' or (len_wave <= 2 and wave[0] == '1') or len_wave == 3 or wave[len_wave-4:len_wave] =='1011':
         print('NO')
 
     else:
