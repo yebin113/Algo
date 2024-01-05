@@ -1,6 +1,42 @@
 from collections import deque
+import heapq
 import sys
 input = sys.stdin.readline
+
+
+def dijkstra(N,arr):
+    q = []
+    visited = [[int(1e9)] * n for _ in range(n)]
+
+    heapq.heappush(q, (arr[0][0], 0, 0))
+    while q:
+        rupee, i, j = heapq.heappop(q)
+        # 끝에 도착했을때 return
+        if i == n - 1 and j == n - 1:
+            return visited[-1][-1]
+
+        for di, dj in dir:
+            ni = i + di
+            nj = j + dj
+            if ni < 0 or ni >= N or nj < 0 or nj >= N:
+                continue
+            n_rupee = rupee + arr[ni][nj]
+            if n_rupee < visited[ni][nj]:
+                visited[ni][nj] = n_rupee
+                heapq.heappush(q,(n_rupee,ni,nj))
+
+
+dir = [[0,1],[1,0],[-1,0],[0,-1]]
+t = 0
+while 1:
+    t += 1
+    n = int(input())
+    if n == 0:
+        break
+    cave = [list(map(int,input().split())) for _ in range(n)]
+    ans = dijkstra(n,cave)
+
+    print(f'Problem {t}: {ans}')
 
 
 def bfs(N,arr):
@@ -24,62 +60,3 @@ def bfs(N,arr):
         print()
     return visited[-1][-1]
 
-
-dir = [[0,1],[1,0],[-1,0],[0,-1]]
-t = 0
-while 1:
-    t += 1
-    n = int(input())
-    if n == 0:
-        break
-    cave = [list(map(int,input().split())) for _ in range(n)]
-    dp = [[125*n*n]*n for _ in range(n)]
-    dp[0][0] = cave[0][0]
-    for i in range(1,n):
-        dp[0][i] = dp[0][i-1] + cave[0][i]
-        dp[i][0] = dp[i-1][0] + cave[i][0]
-    dp[1][1] = dp[0][0] + min(dp[1][0],dp[0][1]) + cave[1][1]
-    for k in range(n):
-        print(cave[k],'         ',dp[k])
-    print()
-    for i in range(1,n):
-        for j in range(1,n):
-            dp[i][j] = min(dp[i-1][j],dp[i][j-1]) + cave[i][j]
-            for k in range(n):
-                print(cave[k],'         ',dp[k])
-            print()
-    ans = dp[-1][-1]
-
-
-
-
-    print(f'Problem {t}: {ans}')
-
-#
-# def dfs(i,j,rupee,path):
-#     print(i,j)
-#     global ans
-#     if i == n-1 and j == n-1:
-#         ans = min(ans, rupee)
-#     for direction in dir:
-#         di,dj = direction
-#         ni = i + di
-#         nj = j + dj
-#         # 범위 밖 제외
-#         if ni < 0 or ni >= n or nj < 0 or nj >= n or (ni,nj) in path:
-#             continue
-#
-#         dfs(ni,nj,rupee+cave[ni][nj],path+[(ni,nj)])
-#
-#
-# dir = [[0, 1], [1, 0], [-1, 0], [0, -1]]
-# t = 0
-# while 1:
-#     t += 1
-#     n = int(input())
-#     if n == 0:
-#         break
-#     cave = [list(map(int, input().split())) for _ in range(n)]
-#     ans = 10000000000000000000000000000000000000000
-#     dfs(0,0,cave[0][0],[(0,0)])
-#     print(f'Problem {t}: {ans}')
