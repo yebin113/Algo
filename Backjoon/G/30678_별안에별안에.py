@@ -1,6 +1,6 @@
 import sys
 
-path = 'random_num.txt'
+path = '../Yet/random_num.txt'
 sys.stdout = open(path, 'w')
 
 def make_star(star,k):
