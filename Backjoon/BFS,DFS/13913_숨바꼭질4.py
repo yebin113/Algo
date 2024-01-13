@@ -26,7 +26,6 @@ def bfs(n,k):
 
         for new in next_locate:
             # 현재 위치가 동생위치보다 크면 -1만 실행하기
-
             # 이미 경로에 있을때 패스
             if new in path:
                 continue
