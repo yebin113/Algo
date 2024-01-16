@@ -19,6 +19,7 @@ def bfs(n,k):
                 ans = len(path)
                 p = path
 
+
         next_locate = [locate - 1, locate + 1, 2 * locate]
         # 지금 위치가 동생보다 크면 무조건 -1만
         if locate > k:
@@ -33,6 +34,7 @@ def bfs(n,k):
             # 범위를 벗어나면 패스
             if not(0<=new<=100000):
                 continue
+            # 현재 위치 + 나랑 동생의 거리차 * 2 내에서 왔다 갔다 하기 위해 범위 제한
             if not(n-abs(n-k)*2 <= new <= n+abs(n-k)*2):
                 continue
             # 현재의 visited 가 패스의 길이보다 길때만
