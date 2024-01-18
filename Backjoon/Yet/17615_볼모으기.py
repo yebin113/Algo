@@ -2,42 +2,39 @@ import sys
 input = sys.stdin.readline
 
 N = int(input())
-balls = list(input())
+balls = list(input().rstrip())
+
 # 한가지인 경우
 cntR = balls.count('R')
 cntB = N - cntR
+result = min(cntR,cntB)
 if cntB*cntR == 0:
     print(0)
 
 else:
-    # 위치 저장
-    locate = {
-        'R':[],
-        'B':[]
-    }
+    start = balls[0]
+    end = balls[-1]
+    cnt_left = 0
+    cnt_right = 0
+    check_l = False
+    check_r = False
     for i in range(N):
-        locate[balls[i]].append(i)
+        if balls[i] != start:
+            break
+        cnt_left +=1
+    for i in range(N-1,-1,-1):
+        if balls[i] != end:
+            break
+        cnt_right +=1
 
-    # 각 공을 오른쪽, 왼쪽으로 밀때의 변경 횟수에 대해 비교하고 적은 수를 출력
-    Rr = 0
-    Rb = 0
-    Lr = 0
-    Lb = 0
-    for i in range(max(cntR,cntB)):
-        try:
-            if locate['R'][i] != N - cntR + i:
-                Rr += 1
-            if locate['R'][i] != i:
-                Lr += 1
-        except:
-            continue
-        try:
-            if locate['B'][i] != N - cntB + i:
-                Rb += 1
-            if locate['B'][i] != i:
-                Lb += 1
-        except:
-            continue
+    if start == 'R':
+        result = min(result,cntR - cnt_left)
+    else:
+        result = min(result, cntB - cnt_left)
 
-    print(min(Rr,Lr,Rb,Lb))
+    if end == 'R':
+        result = min(result,cntR - cnt_right)
+    else:
+        result = min(result, cntB - cnt_right)
+    print(result)
 
