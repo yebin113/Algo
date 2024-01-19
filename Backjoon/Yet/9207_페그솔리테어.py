@@ -7,8 +7,6 @@ input = sys.stdin.readline
  '.'는 빈 칸, 'o'는 핀이 꽂혀있는 칸, 
  '#'는 구멍이 없는 칸
 """
-
-
 def can_switch(board, spot, nspot, nnspot):
     i, j = spot
     len_n, len_m = len(board), len(board[0])
@@ -47,7 +45,7 @@ def bfs(hole,arr):
     이동할 수 있는 경우들을  큐에 담아 bfs로 확인하며
     dp[핀의 개수]를 최소 이동횟수로 갱신한다
     """
-    q = deque([arr, hole, 0])
+    q = deque([[arr, hole, 0]])
     while q:
         board, pins, cnt = q.popleft()
         for pin in pins:
@@ -60,7 +58,7 @@ def bfs(hole,arr):
                 if can_switch(board,[i,j],[ni,nj],[nni,nnj]):
                     new_arr,new_pins = rotate(board,[i,j],[ni,nj],[nni,nnj])
                     q.append([new_arr,new_pins,cnt+1])
-                    if dp[len(new_pins)]
+                    dp[len(new_pins)] = min(dp[len(new_pins)],cnt+1)
 
 
 
@@ -86,3 +84,9 @@ for _ in range(N):
 
     dp = [100000000000]*(len(hole)+1)
     dp[-1] = 0
+    bfs(hole,arr)
+    for i in range(1,len(hole)+1):
+        if dp[i] != 100000000000:
+            print(i, dp[i])
+            break
+
