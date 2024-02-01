@@ -1,7 +1,6 @@
 N = int(input())
-# 자릿수
+dp = [[1]*10 for _ in range(N+1)]
 for i in range(1,N+1):
-    num = i
-    if i <= 9 :
-
-        for j in range(i+1,)
+    for j in range(1,10):
+        dp[i][j] = (dp[i-1][j]+dp[i][j-1])%10007
+print(dp[-1][-1])
