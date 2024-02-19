@@ -25,7 +25,7 @@ def bfs():
             # 2. 합치기
             for i in range(starti,endi,stepi):
                 for i in range(startj, endj, stepj):
-
+                    pass
 
 dir = [[0,1],[1,0],[0,-1],[-1,0]]
 N = int(input())
