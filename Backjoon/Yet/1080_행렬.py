@@ -31,10 +31,12 @@ for i in range(N):
         if A[i][j] == B[i][j]:
             continue
         else:
-            if i < N-3 and j < M-3:
+            if i <= N-3 and j <= M-3:
                 change(i,j)
             else:
                 check = False
+# for i in range(N):
+#     print(A[i],'           ',B[i])
 if check == False:
     print(-1)
 else:
