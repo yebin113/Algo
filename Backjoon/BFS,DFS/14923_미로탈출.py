@@ -1,40 +1,37 @@
 from collections import deque
 import copy
-def bfs(arr,i,j):
+def bfs():
     global cnt,check
     q = deque()
-    q.append([i,j])
-    visited = [[0]*M for _ in range(N)]
-    visited[i][j] = 1
+    q.append([hx,hy,False])
+    visited = [[1000000000000000]*M for _ in range(N)]
+    visited[hx][hy] = 1
     while q:
-        i,j = q.popleft()
+        i,j,is_break = q.popleft()
+        print(i,j,is_break)
         if i ==ex and j == ey:
             cnt = min(cnt,visited[i][j]-1)
             check = True
-
             break
         for di, dj in dir:
             ni = i + di
             nj = j + dj
-            if not (0 <= ni < N and 0 <= nj < M) or arr[ni][nj] == 1 or visited[ni][nj] != 0:
+            # 범위 밖
+            if not (0 <= ni < N and 0 <= nj < M):
                 continue
-            q.append([ni,nj])
-            visited[ni][nj] = visited[i][j] + 1
-    # for k in range(N):
-    #     print(visited[k])
-    # print()
+            # 최단거리 아니면 넘기기
+            if visited[ni][nj] < visited[i][j] + 1:
+                continue
+            if maze[ni][nj] == 1 and is_break == False:
+                q.append([ni,nj,True])
+                visited[ni][nj] = visited[i][j] + 1
+            elif maze[ni][nj] == 0:
+                q.append([ni, nj, is_break])
+                visited[ni][nj] = visited[i][j] + 1
+        for k in range(N):
+            print(maze[k],'        ',visited[k])
+        print()
 
-def is_right(i,j):
-    cnt = 0
-    for di, dj in dir:
-        ni = i + di
-        nj = j + dj
-        if not (0 <= ni < N and 0 <= nj < M) or maze[ni][nj] == 1:
-            cnt += 1
-            continue
-    if cnt >= 3:
-        return False
-    return True
 
 dir = [[0, 1], [-1, 0], [1, 0], [0, -1]]
 N,M = map(int,input().split())
@@ -49,14 +46,8 @@ check = False
 maze = []
 for _ in range(N):
     maze.append(list(map(int,input().split())))
+bfs()
 
-for i in range(N):
-    for j in range(M):
-        if maze[i][j] == 1 and is_right(i,j):
-            arr = copy.deepcopy(maze)
-            arr[i][j] = 0
-            bfs(arr,hx,hy)
-            # maze[i][j] = 1
 if check:
     print(cnt)
 else:
