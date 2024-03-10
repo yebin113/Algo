@@ -10,20 +10,21 @@ from itertools import permutations
 시계 방향으로 한 칸씩 돌린다는 의미
 """
 def rotate(r,c,s):
-    si = r - s - 1
-    ei = r + s
-    sj = c - s - 1
-    ej = c + s
-    l = 2*s
-    # 네 귀퉁이 남겨두고 껍질 안으로 들어가면서 배열 돌림
-    for shell in range(l//2):
-        left_top = copy_arr[si+shell][sj+shell]
-        left_bottom = copy_arr[ei - shell-1][sj + shell]
-        right_top = copy_arr[si+shell][ej-shell-1]
-        right_bottom = copy_arr[ei - shell - 1][ej - shell - 1]
-        # for j in range(sj+shell,ej-shell):
-        #     copy_arr[si+shell][]
-        # 
+    for shell in range(s, 0, -1):
+        tmp = copy_arr[r - shell][c + shell]
+        # 오른쪽 이동
+        copy_arr[r - shell][c - shell + 1:c + shell + 1] = copy_arr[r - shell][c - shell:c + shell] 
+        # 위로 이동
+        for row in range(r - shell, r + shell): 
+            copy_arr[row][c - shell] = copy_arr[row + 1][c - shell]
+        # 왼쪽 이동
+        copy_arr[r + shell][c - shell:c + shell] = copy_arr[r + shell][c - shell + 1:c + shell + 1] 
+        # 아래 이동
+        for row in range(r + shell, r - shell, -1): 
+            copy_arr[row][c + shell] = copy_arr[row - 1][c + shell]
+        # 빼놓은 첫번째 값 넣기
+        copy_arr[r - shell + 1][c + shell] = tmp
+
 
 N,M,K = map(int,input().split())
 
@@ -45,8 +46,9 @@ for turn in permutations(rotate_list,K):
     copy_arr = copy.deepcopy(arr)
     # 해당 순서에 맞게 돌린다
     for r,c,s in turn:
-        rotate(r,c,s)
+        rotate(r-1,c-1,s)
     # 배열의 최소를 갱신
     for i in range(N):
         min_sum = min(min_sum,sum(copy_arr[i]))
 
+print(min_sum)
