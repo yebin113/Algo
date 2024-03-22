@@ -1,8 +1,20 @@
+"""
+우선순위 큐를 사용
+힙에서 가장 작은 두 숫자를 합쳐서 힙에 다시 삽입한다
+가장 작은 두숫자들끼리 묶어둔 다음 더해가는 것이 가장 효율적
+"""
+import heapq
 N = int(input())
-numbers = list(map(int,input().split()))
-K = int(input())
-dp = [[0]*2 for _ in range(N+1)]
-print(dp[0])
-print(dp[1])
+cards = []
+for _ in range(N):
+    heapq.heappush(cards,int(input()))
+ans = 0
+while len(cards) >1:
+    i = heapq.heappop(cards)
+    j = heapq.heappop(cards)
+    sum_ij = i+j
+    ans += sum_ij
+    heapq.heappush(cards,sum_ij)
 
-# for _ in range(1,N+1):
+print(ans)
+
